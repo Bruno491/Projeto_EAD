@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}E-commerce{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('main.home') }}">Home</a></li>
+      {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('listing.create') }}">Novo Anúncio</a></li>
+        <li><a href="{{ url_for('listing.user_listings') }}">Meus Anúncios</a></li>
+        <li><a href="{{ url_for('report.sales') }}">Relatório Vendas</a></li>
+        <li><a href="{{ url_for('report.purchases') }}">Relatório Compras</a></li>
+        <li><a href="{{ url_for('favorite.lists') }}">Favoritos</a></li>
+        <li><a href="{{ url_for('auth.logout') }}">Sair</a></li>
+      {% else %}
+        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+        <li><a href="{{ url_for('auth.register') }}">Registrar</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
