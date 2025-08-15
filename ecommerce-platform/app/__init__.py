@@ -12,10 +12,10 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev")
 
-    server   = os.getenv("DB_SERVER", "SeuServidorAqui")
-    database = os.getenv("DB_NAME", "SeuBancoAqui")
-    user     = os.getenv("DB_USER", "SeuUsuarioAqui")
-    password = os.getenv("DB_PASS", "SuaSenhaAqui")
+    server   = os.getenv("DB_SERVER", "SeuServidor")
+    database = os.getenv("DB_NAME", "Trabalho_EAD")
+    user     = os.getenv("DB_USER", "SeuUsuario")
+    password = os.getenv("DB_PASS", "SuaSenha")
 
     odbc_str = (
         f"DRIVER={{ODBC Driver 17 for SQL Server}};"
