@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Editar Favorito' if favorito else 'Novo Favorito' }}</h2>
+<form method="post">
+  <label>Usuário</label><br>
+  <select name="usuario_id" required>
+    {% for u in usuarios %}
+      <option value="{{ u.id }}" {{ 'selected' if favorito and favorito.usuario_id==u.id else '' }}>{{ u.nome }}</option>
+    {% endfor %}
+  </select><br>
+  <label>Anúncio</label><br>
+  <select name="anuncio_id" required>
+    {% for a in anuncios %}
+      <option value="{{ a.id }}" {{ 'selected' if favorito and favorito.anuncio_id==a.id else '' }}>{{ a.titulo }}</option>
+    {% endfor %}
+  </select><br><br>
+  <button type="submit">Salvar</button>
+  <a href="{{ url_for('favoritos.listar') }}">Voltar</a>
+</form>
+{% endblock %}

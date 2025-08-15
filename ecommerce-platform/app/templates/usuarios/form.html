@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Editar Usuário' if usuario else 'Novo Usuário' }}</h2>
+<form method="post">
+  <label>Nome</label><br>
+  <input name="nome" value="{{ usuario.nome if usuario else '' }}" required><br>
+  <label>Email</label><br>
+  <input name="email" type="email" value="{{ usuario.email if usuario else '' }}" required><br>
+  <label>Senha</label><br>
+  <input name="senha" type="password" {{ '' if usuario else 'required' }}><br><br>
+  <button type="submit">Salvar</button>
+  <a href="{{ url_for('usuarios.listar') }}">Voltar</a>
+</form>
+{% endblock %}

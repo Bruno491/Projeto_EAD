@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Categorias</h2>
+<p><a href="{{ url_for('categorias.criar') }}">+ Nova categoria</a></p>
+<table>
+  <tr><th>ID</th><th>Nome</th><th>Ações</th></tr>
+  {% for c in categorias %}
+  <tr>
+    <td>{{ c.id }}</td>
+    <td>{{ c.nome }}</td>
+    <td class="actions">
+      <a href="{{ url_for('categorias.editar', id=c.id) }}">Editar</a>
+      <a href="{{ url_for('categorias.excluir', id=c.id) }}">Excluir</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

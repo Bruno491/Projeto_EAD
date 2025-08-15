@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Favoritos</h2>
+<p><a href="{{ url_for('favoritos.criar') }}">+ Adicionar favorito</a></p>
+<table>
+  <tr><th>ID</th><th>Usuário</th><th>Anúncio</th><th>Ações</th></tr>
+  {% for f in favoritos %}
+  <tr>
+    <td>{{ f.id }}</td>
+    <td>{{ f.usuario.nome }}</td>
+    <td>{{ f.anuncio.titulo }}</td>
+    <td class="actions">
+      <a href="{{ url_for('favoritos.editar', id=f.id) }}">Editar</a>
+      <a href="{{ url_for('favoritos.excluir', id=f.id) }}">Excluir</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Editar Anúncio' if anuncio else 'Novo Anúncio' }}</h2>
+<form method="post">
+  <label>Título</label><br>
+  <input name="titulo" value="{{ anuncio.titulo if anuncio else '' }}" required><br>
+  <label>Descrição</label><br>
+  <textarea name="descricao" required>{{ anuncio.descricao if anuncio else '' }}</textarea><br>
+  <label>Preço</label><br>
+  <input name="preco" type="number" step="0.01" value="{{ anuncio.preco if anuncio else '' }}" required><br>
+  <label>Dono (Usuário)</label><br>
+  <select name="usuario_id" required>
+    {% for u in usuarios %}
+      <option value="{{ u.id }}" {{ 'selected' if anuncio and anuncio.usuario_id==u.id else '' }}>{{ u.nome }}</option>
+    {% endfor %}
+  </select><br>
+  <label>Categoria</label><br>
+  <select name="categoria_id" required>
+    {% for c in categorias %}
+      <option value="{{ c.id }}" {{ 'selected' if anuncio and anuncio.categoria_id==c.id else '' }}>{{ c.nome }}</option>
+    {% endfor %}
+  </select><br><br>
+  <button type="submit">Salvar</button>
+  <a href="{{ url_for('anuncios.listar') }}">Voltar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Editar Compra' if compra else 'Registrar Compra' }}</h2>
+<form method="post">
+  <label>Anúncio</label><br>
+  <select name="anuncio_id" required>
+    {% for a in anuncios %}
+      <option value="{{ a.id }}" {{ 'selected' if compra and compra.anuncio_id==a.id else '' }}>{{ a.titulo }}</option>
+    {% endfor %}
+  </select><br>
+  <label>Comprador (Usuário)</label><br>
+  <select name="comprador_id" required>
+    {% for u in usuarios %}
+      <option value="{{ u.id }}" {{ 'selected' if compra and compra.comprador_id==u.id else '' }}>{{ u.nome }}</option>
+    {% endfor %}
+  </select><br><br>
+  <button type="submit">Salvar</button>
+  <a href="{{ url_for('compras.listar') }}">Voltar</a>
+</form>
+{% endblock %}

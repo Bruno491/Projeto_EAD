@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Editar Categoria' if categoria else 'Nova Categoria' }}</h2>
+<form method="post">
+  <label>Nome</label><br>
+  <input name="nome" value="{{ categoria.nome if categoria else '' }}" required><br><br>
+  <button type="submit">Salvar</button>
+  <a href="{{ url_for('categorias.listar') }}">Voltar</a>
+</form>
+{% endblock %}
