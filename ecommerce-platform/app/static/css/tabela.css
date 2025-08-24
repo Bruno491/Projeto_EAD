@@ -1,0 +1,28 @@
+/* Container da navbar já vem do Bootstrap, só ajustamos a lista */
+.navbar-nav.me-auto {
+    display: flex;
+    align-items: stretch; /* altura uniforme */
+    gap: 0; /* sem espaçamento interno, vai usar as bordas */
+}
+
+.navbar-nav.me-auto .nav-item {
+    border: 1px solid rgba(255, 255, 255, 0.2); /* borda clara */
+    border-right: none; /* evitar borda dupla no meio */
+}
+
+.navbar-nav.me-auto .nav-item:last-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navbar-nav.me-auto .nav-link {
+    padding: 10px 16px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar-nav.me-auto .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}

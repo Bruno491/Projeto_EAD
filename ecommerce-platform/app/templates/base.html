@@ -1,30 +1,52 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}E-commerce CRUD{% endblock %}</title>
-  <style>
-    body{font-family:Arial, sans-serif; max-width:1000px; margin:20px auto;}
-    nav a{margin-right:12px;}
-    table{width:100%; border-collapse:collapse;}
-    th, td{border:1px solid #ddd; padding:8px;}
-    .actions a{margin-right:8px;}
-    .flash{padding:8px; margin:10px 0; border-radius:4px; background:#f5f5f5;}
-  </style>
+    <meta charset="UTF-8">
+    <title>{% block title %}Meu Sistema{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <nav>
-    <a href="{{ url_for('anuncios.listar') }}">Anúncios</a>
-    <a href="{{ url_for('usuarios.listar') }}">Usuários</a>
-    <a href="{{ url_for('categorias.listar') }}">Categorias</a>
-    <a href="{{ url_for('perguntas.listar') }}">Perguntas</a>
-    <a href="{{ url_for('compras.listar') }}">Compras</a>
-    <a href="{{ url_for('favoritos.listar') }}">Favoritos</a>
-  </nav>
-  {% for cat, msg in get_flashed_messages(with_categories=true) %}
-    <div class="flash">{{ msg }}</div>
-  {% endfor %}
-  <hr>
-  {% block content %}{% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Meu Sistema</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('anuncios.listar') }}">Anúncios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('categorias.listar') }}">Categorias</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('compras.listar') }}">Compras</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('favoritos.listar') }}">Favoritos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('perguntas.listar') }}">Perguntas</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Sair</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Entrar</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

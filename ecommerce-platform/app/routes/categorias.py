@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .. import db
 from ..models import Categoria
+from flask_login import login_required
 
 bp = Blueprint("categorias", __name__, template_folder="../templates/categorias")
 
@@ -10,6 +11,7 @@ def listar():
     return render_template("categorias/list.html", categorias=categorias)
 
 @bp.route("/novo", methods=["GET", "POST"])
+@login_required
 def criar():
     if request.method == "POST":
         c = Categoria(nome=request.form["nome"])
@@ -20,6 +22,7 @@ def criar():
     return render_template("categorias/form.html", categoria=None)
 
 @bp.route("/<int:id>/editar", methods=["GET", "POST"])
+@login_required
 def editar(id):
     categoria = Categoria.query.get_or_404(id)
     if request.method == "POST":
@@ -30,6 +33,7 @@ def editar(id):
     return render_template("categorias/form.html", categoria=categoria)
 
 @bp.route("/<int:id>/excluir", methods=["GET", "POST"])
+@login_required
 def excluir(id):
     categoria = Categoria.query.get_or_404(id)
     if request.method == "POST":

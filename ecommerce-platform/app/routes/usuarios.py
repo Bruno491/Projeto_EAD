@@ -1,13 +1,14 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, abort, render_template, request, redirect, url_for, flash
 from .. import db
 from ..models import Usuario
+from flask_login import current_user, login_required
 
 bp = Blueprint("usuarios", __name__, template_folder="../templates/usuarios")
 
 @bp.route("/")
 def listar():
-    usuarios = Usuario.query.order_by(Usuario.id.desc()).all()
-    return render_template("usuarios/list.html", usuarios=usuarios)
+        usuarios = Usuario.query.order_by(Usuario.id.desc()).all()
+        return render_template("usuarios/list.html", usuarios=usuarios)
 
 @bp.route("/novo", methods=["GET", "POST"])
 def criar():
@@ -24,6 +25,7 @@ def criar():
     return render_template("usuarios/form.html", usuario=None)
 
 @bp.route("/<int:id>/editar", methods=["GET", "POST"])
+@login_required
 def editar(id):
     usuario = Usuario.query.get_or_404(id)
     if request.method == "POST":
@@ -37,6 +39,7 @@ def editar(id):
     return render_template("usuarios/form.html", usuario=usuario)
 
 @bp.route("/<int:id>/excluir", methods=["GET", "POST"])
+@login_required
 def excluir(id):
     usuario = Usuario.query.get_or_404(id)
     if request.method == "POST":

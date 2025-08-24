@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "cadastrar.html" %}
 {% block content %}
 <h2>{{ 'Editar Usuário' if usuario else 'Novo Usuário' }}</h2>
 <form method="post">
@@ -9,6 +9,6 @@
   <label>Senha</label><br>
   <input name="senha" type="password" {{ '' if usuario else 'required' }}><br><br>
   <button type="submit">Salvar</button>
-  <a href="{{ url_for('usuarios.listar') }}">Voltar</a>
+  <a href="{{ url_for('anuncios.listar') }}">Voltar</a>
 </form>
 {% endblock %}

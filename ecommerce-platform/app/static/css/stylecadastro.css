@@ -1,0 +1,67 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+/* Centraliza o bloco de conteúdo e dá estilo */
+.container {
+    max-width: 600px;
+}
+
+/* Título do formulário */
+h2 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Estilo para labels */
+form label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+/* Inputs com aparência limpa */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+form input:focus {
+    border-color: #0d6efd;
+    outline: none;
+}
+
+/* Botões */
+button[type="submit"] {
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0b5ed7;
+}
+
+a {
+    display: inline-block;
+    margin-top: 16px;
+    color: #6c757d;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

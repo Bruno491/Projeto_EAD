@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from .. import db
 from ..models import Anuncio, Usuario, Categoria
+from flask_login import login_required
 
 bp = Blueprint("anuncios", __name__, template_folder="../templates/anuncios")
 
@@ -10,6 +11,7 @@ def listar():
     return render_template("anuncios/list.html", anuncios=anuncios)
 
 @bp.route("/novo", methods=["GET", "POST"])
+@login_required
 def criar():
     usuarios = Usuario.query.all()
     categorias = Categoria.query.all()
@@ -28,6 +30,7 @@ def criar():
     return render_template("anuncios/form.html", anuncio=None, usuarios=usuarios, categorias=categorias)
 
 @bp.route("/<int:id>/editar", methods=["GET", "POST"])
+@login_required
 def editar(id):
     anuncio = Anuncio.query.get_or_404(id)
     usuarios = Usuario.query.all()
@@ -44,6 +47,7 @@ def editar(id):
     return render_template("anuncios/form.html", anuncio=anuncio, usuarios=usuarios, categorias=categorias)
 
 @bp.route("/<int:id>/excluir", methods=["GET", "POST"])
+@login_required
 def excluir(id):
     anuncio = Anuncio.query.get_or_404(id)
     if request.method == "POST":
