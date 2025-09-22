@@ -3,19 +3,19 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Centraliza o bloco de conteúdo e dá estilo */
+
 .container {
     max-width: 600px;
 }
 
-/* Título do formulário */
+
 h2 {
     margin-bottom: 20px;
     font-weight: bold;
     color: #343a40;
 }
 
-/* Estilo para labels */
+
 form label {
     display: block;
     margin-top: 12px;
@@ -23,7 +23,7 @@ form label {
     font-weight: 500;
 }
 
-/* Inputs com aparência limpa */
+
 form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
@@ -40,7 +40,7 @@ form input:focus {
     outline: none;
 }
 
-/* Botões */
+
 button[type="submit"] {
     background-color: #0d6efd;
     color: #fff;
