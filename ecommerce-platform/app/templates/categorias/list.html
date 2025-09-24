@@ -1,18 +1,29 @@
-{% extends "listas.html" %}
+{% extends "base.html" %}
 {% block content %}
-<h2>Categorias</h2>
-<p><a href="{{ url_for('categorias.criar') }}">+ Nova categoria</a></p>
-<table>
-  <tr><th>ID</th><th>Nome</th><th>Ações</th></tr>
-  {% for c in categorias %}
-  <tr>
-    <td>{{ c.id }}</td>
-    <td>{{ c.nome }}</td>
-    <td class="actions">
-      <a href="{{ url_for('categorias.editar', id=c.id) }}">Editar</a>
-      <a href="{{ url_for('categorias.excluir', id=c.id) }}">Excluir</a>
-    </td>
-  </tr>
-  {% endfor %}
+<h2 class="mb-3">Categorias</h2>
+<p>
+  <a href="{{ url_for('categorias.criar') }}" class="btn btn-primary mb-3">+ Nova categoria</a>
+</p>
+
+<table class="table table-hover">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in categorias %}
+    <tr>
+      <th scope="row">{{ c.id }}</th>
+      <td>{{ c.nome }}</td>
+      <td>
+        <a href="{{ url_for('categorias.editar', id=c.id) }}" class="btn btn-sm btn-outline-secondary me-1">Editar</a>
+        <a href="{{ url_for('categorias.excluir', id=c.id) }}" class="btn btn-sm btn-outline-danger">Excluir</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}

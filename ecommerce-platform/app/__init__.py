@@ -14,44 +14,10 @@ def create_app():
 
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev")
-
-    server   = os.getenv("DB_SERVER", "Seu_servidor_aqui")
-    database = os.getenv("DB_NAME", "Seu_banco_de_dados_aqui")
-    user     = os.getenv("DB_USER", "SA")
-    password = os.getenv("DB_PASS", "sua_senha_aqui")
-
-    odbc_str = (
-        f"DRIVER={{ODBC Driver 17 for SQL Server}};"
-        f"SERVER={server};"
-        f"DATABASE={database};"
-        f"UID={user};"
-        f"PWD={password};"
-        "TrustServerCertificate=yes;"
-    )
-    connect_uri = "mssql+pyodbc:///?odbc_connect=" + quote_plus(odbc_str)
-
-    app.config["SQLALCHEMY_DATABASE_URI"]        = os.getenv("DATABASE_URL", connect_uri)
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-import os
-from flask import Flask, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from dotenv import load_dotenv
-from flask_login import LoginManager
-
-db = SQLAlchemy()
-login_manager = LoginManager()
-
-def create_app():
-    load_dotenv()
-
-    app = Flask(__name__)
-    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev")
-
-    # Configuração do banco MySQL no PythonAnywhere
-    # Senha original: Fenix9710@9710  →  codificada: Fenix9710%409710
+ 
     app.config["SQLALCHEMY_DATABASE_URI"] = (
-        "mysql://Bruno009:Bruno009.mysql.pythonanywhere-services.com:3306/Bruno009$Teste"
-    )
+    "mssql+pyodbc://sa:Fenix9710%409710@(localdb)\\MSSQLLocalDB/Trabalho_EAD?driver=ODBC+Driver+17+for+SQL+Server"
+)
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
     db.init_app(app)

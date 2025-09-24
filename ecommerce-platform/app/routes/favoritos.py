@@ -12,7 +12,7 @@ def listar():
 
 @bp.route("/novo", methods=["GET", "POST"])
 @login_required
-def criar():
+def criar(): #comentar
     usuarios = Usuario.query.all()
     anuncios = Anuncio.query.all()
     if request.method == "POST":
@@ -29,7 +29,7 @@ def criar():
             flash("Já existe esse favorito ou dados inválidos.", "warning")
         return redirect(url_for(".listar"))
     return render_template("favoritos/form.html", favorito=None, usuarios=usuarios, anuncios=anuncios)
-
+#####################################################################################################
 @bp.route("/<int:id>/editar", methods=["GET", "POST"])
 @login_required
 def editar(id):

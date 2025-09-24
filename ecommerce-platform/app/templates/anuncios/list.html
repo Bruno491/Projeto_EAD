@@ -1,21 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
 <h2>Anúncios</h2>
-<p><a href="{{ url_for('anuncios.criar') }}">+ Novo anúncio</a></p>
-<table>
-  <tr><th>ID</th><th>Título</th><th>Preço</th><th>Dono</th><th>Categoria</th><th>Ações</th></tr>
-  {% for a in anuncios %}
-  <tr>
-    <td>{{ a.id }}</td>
-    <td>{{ a.titulo }}</td>
-    <td>R$ {{ a.preco }}</td>
-    <td>{{ a.dono.nome }}</td>
-    <td>{{ a.categoria.nome }}</td>
-    <td class="actions">
-      <a href="{{ url_for('anuncios.editar', id=a.id) }}">Editar</a>
-      <a href="{{ url_for('anuncios.excluir', id=a.id) }}">Excluir</a>
-    </td>
-  </tr>
-  {% endfor %}
+<p><a href="{{ url_for('anuncios.criar') }}" class="btn btn-primary mb-3">+ Novo anúncio</a></p>
+
+<table class="table table-hover">
+  <thead class="table-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Título</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Dono</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in anuncios %}
+    <tr>
+      <th scope="row">{{ a.id }}</th>
+      <td>{{ a.titulo }}</td>
+      <td>R$ {{ a.preco }}</td>
+      <td>{{ a.dono.nome }}</td>
+      <td>{{ a.categoria.nome }}</td>
+      <td>
+        <a href="{{ url_for('anuncios.editar', id=a.id) }}" class="btn btn-sm btn-outline-secondary">Editar</a>
+        <a href="{{ url_for('anuncios.excluir', id=a.id) }}" class="btn btn-sm btn-outline-danger">Excluir</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 {% endblock %}
